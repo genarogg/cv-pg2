@@ -15,23 +15,19 @@
 </div>
 
 <script>
-  document.getElementById('submit-btn').addEventListener('click', async () => {
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('name').value;
-    const mensaje = document.getElementById('mensaje').value;
+document.getElementById('submit-btn').addEventListener('click', async () => {
+  const form = document.getElementById('contacto-form');
+  const formData = new FormData(form);
 
-    const response = await fetch('/form-contacto', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, name, mensaje }),
-    });
-
-    if (response.ok) {
-      console.log('Formulario enviado con éxito');
-    } else {
-      console.error('Error al enviar el formulario');
-    }
+  const response = await fetch('/form-contacto', {
+    method: 'POST',
+    body: formData,
   });
+
+  if (response.ok) {
+    console.log('Formulario enviado con éxito');
+  } else {
+    console.error('Error al enviar el formulario');
+  }
+});
 </script>
